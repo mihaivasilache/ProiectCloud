@@ -20,32 +20,9 @@ def list_files(datastore_client):
 	results = list(query.fetch())
 	return results
 
-def descending_sort(client):
-    # Create the entity that we're going to query.
-    task = upsert(client)
-    task['created'] = datetime.datetime.utcnow()
-    client.put(task)
-
-    # [START descending_sort]
-    query = client.query(kind='File')
-    query.order = ['-created']
-    # [END descending_sort]
-
-    return list(query.fetch())
-
 #nu merge
 def delete_files(datastore_client):
 	complete_key = datastore_client.key('File')
 	datastore_client.delete(complete_key)
 	return "Deleted all files"
 
-def upsert(client):
-    # [START upsert]
-    complete_key = client.key('File', 'sample_file')
-
-    task = datastore.Entity(key=complete_key)
-
-    client.put(task)
-    # [END upsert]
-
-    return task
