@@ -46,7 +46,7 @@ def list_files():
 def list_files_sorted():
 	logger.log_text('Request for /slist')
 	files = []
-	for file in datastore.list_files(datastore_client):
+	for file in datastore.descending_sort(datastore_client):
 		file_ = {}
 		items = file.items()
 		for item in items:
