@@ -44,7 +44,7 @@ def list_files():
 	
 @app.route('/delete', methods=['DELETE'])
 def delete_files():
-	return datastore.delete_files(datastore_client)
+	return datastore.delete(datastore_client)
 	
 @app.route('/')
 def hello():
