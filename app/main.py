@@ -12,6 +12,7 @@ logger = None
 project_id = 'tema-cloud3'
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 @app.route('/upload', methods=['POST'])
 def upload():
