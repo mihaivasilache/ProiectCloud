@@ -38,3 +38,14 @@ def delete_files(datastore_client):
 	complete_key = datastore_client.key('File')
 	datastore_client.delete(complete_key)
 	return "Deleted all files"
+
+def upsert(client):
+    # [START upsert]
+    complete_key = client.key('File', 'sample_file')
+
+    task = datastore.Entity(key=complete_key)
+
+    client.put(task)
+    # [END upsert]
+
+    return task
