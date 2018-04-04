@@ -42,7 +42,7 @@ def list_files():
 
 
 @app.route('/slist', methods=['GET'])
-def list_files():
+def list_files_sorted():
 	logger.log_text('Request for /slist')
 	files = []
 	for file in datastore.list_files(datastore_client):
