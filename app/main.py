@@ -39,6 +39,26 @@ def list_files():
 	print 'in storage: ', storage_files
 	print 'in datastore: ', files
 	return json.dumps(files)
+
+
+@app.route('/slist', methods=['GET'])
+def list_files():
+	logger.log_text('Request for /slist')
+	files = []
+	for file in datastore.list_files(datastore_client):
+		file_ = {}
+		items = file.items()
+		for item in items:
+			if item[0] == 'added':
+				file_[item[0]] = str(item[1])
+			else:
+				file_[item[0]] = item[1]
+		files.append(file_)
+	storage_files = storage.list_blobs(storage_client)
+	print 'in storage: ', storage_files
+	print 'in datastore: ', files
+	return json.dumps(files)
+
 	
 @app.route('/delete', methods=['DELETE'])
 def delete_files():
