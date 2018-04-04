@@ -18,3 +18,11 @@ def upload_file(storage_client, uploaded_file):
 	blob = bucket.blob(uploaded_file.filename)
 	blob.upload_from_string(uploaded_file.read(), content_type=uploaded_file.content_type)
 	return blob.public_url
+	
+def list_blobs(storage_client):
+	bucket = storage_client.get_bucket(CLOUD_STORAGE_BUCKET)
+	blobs = bucket.list_blobs()
+	blobs_ = []
+	for blob in blobs:
+		blobs_.append(blob.name)
+	return blobs_

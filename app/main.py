@@ -35,6 +35,9 @@ def list_files():
 			else:
 				file_[item[0]] = item[1]
 		files.append(file_)
+	storage_files = storage.list_blobs(storage_client)
+	print 'in storage: ', storage_files
+	print 'in datastore: ', files
 	return json.dumps(files)
 	
 @app.route('/delete', methods=['DELETE'])
@@ -51,9 +54,18 @@ def server_error(e):
 	logger.log_text('An error occurred during a request.')
 	return "An internal error occurred: <pre>{}</pre>See logs for full stacktrace.".format(e), 500
 
-if __name__ == '__main__':
+@app.before_first_request
+def execute_this():
+	global logger, storage_client, datastore_client
 	logging_client = google.cloud.logging.Client(project_id)
-	logger = logging_client.logger('app_log')
+	log_name = 'my-log'
+	logger = logging_client.logger(log_name)
 	storage_client = storage.get_client()
 	datastore_client = datastore.get_client()
-	app.run(host='127.0.0.1', port=8080, debug=True)
+
+'''
+def main(environ, start_response):
+	app.run(host='127.0.0.1', port=8000, debug=True)
+'''
+if __name__ == '__main__':
+	app.run(host='127.0.0.1', port=8000, debug=True)

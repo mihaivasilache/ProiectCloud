@@ -1,0 +1,6 @@
+Flask==0.12.2
+google-cloud-storage==1.6.0
+google-cloud-logging==1.4.0
+google-cloud-datastore==1.4.0
+gunicorn==19.7.1
+grpcio==1.10.0
