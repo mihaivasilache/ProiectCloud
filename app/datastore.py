@@ -27,26 +27,6 @@ def delete_files(datastore_client):
 	return "Deleted all files"
 
 
-def upsert(datastore_client):
-    # [START upsert]
-    complete_key = datastore_client.key('File')
-    task = datastore.Entity(key=complete_key)
-    task.update({
- 	'filename': uploaded_file.filename,
-	'added': datetime.datetime.utcnow()
-    })
-    datastore_client.put(task)
-
-    return task
-
-
 def delete(client):
-    # Create the entity we're going to delete.
-    upsert(client)
-
-    # [START delete]
-    key = client.key('File')
-    client.delete(key)
-    # [END delete]
-
-    return key
+	next_entity = query.fetch()
+	client.delete(next_entity.key)
