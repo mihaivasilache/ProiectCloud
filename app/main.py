@@ -41,7 +41,7 @@ def list_files():
 	return json.dumps(files)
 
 
-@app.route('/slist', methods=['GET'])
+@app.route('/sorted', methods=['GET'])
 def list_files_sorted():
 	logger.log_text('Request for /slist')
 	files = []
