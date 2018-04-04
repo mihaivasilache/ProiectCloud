@@ -12,7 +12,6 @@ logger = None
 project_id = 'tema-cloud3'
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -39,7 +38,7 @@ def list_files():
 	storage_files = storage.list_blobs(storage_client)
 	print 'in storage: ', storage_files
 	print 'in datastore: ', files
-	return json.dumps(files)
+	return json.dumps(files, indent=4, sort_keys=True, default=str)
 
 	
 @app.route('/delete', methods=['DELETE'])
