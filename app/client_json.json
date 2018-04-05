@@ -1,11 +1,11 @@
 {
   "installed": {
-    "client_id": "558131429873-aqnqvdd2j050c0ocu1s9s0h0d9e5jt9b.apps.googleusercontent.com",
+    "client_id": "558131429873-0ra3ios2jt8lrgasllqroqjf0bdqj2n0.apps.googleusercontent.com",
     "project_id": "tema-cloud3",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "AKiMLIfygO7gJwYD0C7gJJ5x",
+    "client_secret": "6T0bqRe83oHFjVUvXKmwAT6J",
     "redirect_uris": [
       "urn:ietf:wg:oauth:2.0:oob",
       "http://localhost"

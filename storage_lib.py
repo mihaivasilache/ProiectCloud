@@ -5,11 +5,10 @@ from oauth2client.client import OAuth2WebServerFlow
 import webbrowser
 import json
 import socketserver
-import threading
 import http.server
-from google.auth.credentials import Credentials
 
 CODE = None
+
 
 class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
 
@@ -20,12 +19,14 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.end_headers()
 
+
 def create_server():
     port = 8000
     server_handler = MyHttpRequestHandler
     httpd = socketserver.TCPServer(("", port), server_handler)
     print("serving at port" + str(port))
     httpd.serve_forever()
+
 
 def create_credentials():
     global CODE
@@ -43,16 +44,19 @@ def create_credentials():
     credentials = flow.step2_exchange(CODE)
     print(credentials)
 
+
 def create_bucket(bucket_name, credentials=None):
     """Creates a new bucket."""
     storage_client = storage.Client(credentials=credentials)
     bucket = storage_client.create_bucket(bucket_name)
     print('Bucket {} created'.format(bucket.name))
 
+
 def main():
-    #thread = threading.Thread(target=create_server)
-    #thread.start()
+    # thread = threading.Thread(target=create_server)
+    # thread.start()
     create_credentials()
+
 
 if __name__ == '__main__':
     main()
