@@ -29,3 +29,4 @@ def delete_files(datastore_client):
     complete_key = datastore_client.key('File')
     datastore_client.delete(complete_key)
     return "Deleted all files"
+

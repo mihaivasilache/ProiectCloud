@@ -8,7 +8,6 @@ import google.oauth2.credentials
 from flask_oauth import OAuth
 import json
 
-
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'app.json'
 CONFIG = json.load(open('client_json.json'))
 CLOUD_STORAGE_BUCKET = 'tema-cloud3.appspot.com'
